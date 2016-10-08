@@ -2,7 +2,7 @@ using System;
 
 namespace Core.Domain.Model
 {
-    public class Place
+    public sealed class Place : BaseEntity
     {
         public Guid Id { get; set; }
 

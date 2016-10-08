@@ -1,6 +1,6 @@
 namespace Core.Domain.Model
 {
-    public class Coordinates
+    public sealed class Coordinates : BaseEntity
     {
         public double X { get; set; }
 

@@ -1,6 +1,6 @@
 namespace Core.Domain.Model
 {
-    public class Building
+    public sealed class Building : BaseEntity
     {
         public string Name { get; set; }
 
