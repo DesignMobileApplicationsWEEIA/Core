@@ -13,10 +13,5 @@ namespace Core.Domain.Model
         public double Longitude { get; set; }
 
         public Building Building { get; set; }
-        
-        public Place()
-        {
-
-        }
     }
 }
