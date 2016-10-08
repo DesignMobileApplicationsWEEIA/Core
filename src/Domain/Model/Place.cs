@@ -8,6 +8,8 @@ namespace Core.Domain.Model
 
         public string Name { get; set; }
 
+        public Location Location { get; set; }
+        
         public Place()
         {
 
