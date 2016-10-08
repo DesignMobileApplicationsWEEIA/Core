@@ -8,7 +8,7 @@ namespace Core.Domain.Model
 
         public string Description { get; set; }
 
-        public Faculty[] Faculty { get; set; }
+        public FacultyWreaper[] Faculty { get; set; }
         
         public Building()
         {
