@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Domain.Database.Implementations
 {
-    public class DefaultPostgreDbManager : DbContext, IDbManager
+    public class DefaultDbContext : DbContext, IDbManager
     {
-        public DefaultPostgreDbManager()
+        public DefaultDbContext(DbContextOptions<DefaultPostgreDbManager> options) : base(options)
         {
         }
     }
