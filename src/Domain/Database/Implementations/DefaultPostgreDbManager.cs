@@ -1,14 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.Domain.Database.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Domain.Database.Implementations
 {
-    public class DefaultPostgreDbManager
+    public class DefaultPostgreDbManager : DbContext, IDbManager
     {
-        public DefaultPostgreDbManager()
+        private string _connectionString = string.Empty;
+
+        public DefaultPostgreDbManager(string connectionString)
         {
+            _connectionString = connectionString;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql(_connectionString);
         }
     }
 }
