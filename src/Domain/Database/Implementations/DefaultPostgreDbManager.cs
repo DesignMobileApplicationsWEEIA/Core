@@ -5,16 +5,8 @@ namespace Core.Domain.Database.Implementations
 {
     public class DefaultPostgreDbManager : DbContext, IDbManager
     {
-        private string _connectionString = string.Empty;
-
-        public DefaultPostgreDbManager(string connectionString)
+        public DefaultPostgreDbManager()
         {
-            _connectionString = connectionString;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(_connectionString);
         }
     }
 }
