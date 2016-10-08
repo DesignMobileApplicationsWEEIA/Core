@@ -8,7 +8,11 @@ namespace Core.Domain.Model
 
         public string Name { get; set; }
 
-        public Location Location { get; set; }
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public Building Building { get; set; }
         
         public Place()
         {
