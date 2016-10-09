@@ -13,6 +13,6 @@ namespace Core.Domain.Model
 
         public string Description { get; set; }
 
-        public List<FacultyWreaper> Faculties { get; set; }
+        public ICollection<FacultyWreaper> Faculties { get; set; }
     }
 }
