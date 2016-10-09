@@ -14,5 +14,7 @@ namespace Core.Domain.Model
         public string Description { get; set; }
 
         public ICollection<FacultyWreaper> Faculties { get; set; }
+
+        public ICollection<Place> Places { get; set; }
     }
 }
