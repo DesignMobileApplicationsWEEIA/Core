@@ -8,16 +8,16 @@ namespace Core.Domain.Repositories.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {
-        Option<List<TEntity>> GetBy(Func<TEntity, bool> predicate);
-        Task<Option<List<TEntity>>> GetByAsync(Func<TEntity, bool> predicate);
-        Option<List<TEntity>> GetAll();
-        Task<Option<List<TEntity>>> GetAllAsync();
-        Option<bool> Insert(TEntity entity);
-        Task<Option<bool>> InsertAsync(TEntity entity);
-        Option<bool> Update(TEntity entity);
-        Task<Option<bool>> UpdateAsync(TEntity entity);
-        Task<Option<bool>> DeleteAsync(TEntity entity);
-        Option<int> SaveChanges();
-        Task<Option<int>> SaveChangesAsync();
+        List<TEntity> GetBy(Func<TEntity, bool> predicate);
+        Task<List<TEntity>> GetByAsync(Func<TEntity, bool> predicate);
+        List<TEntity> GetAll();
+        Task<List<TEntity>> GetAllAsync();
+        bool Insert(TEntity entity);
+        Task<bool> InsertAsync(TEntity entity);
+        bool Update(TEntity entity);
+        Task<bool> UpdateAsync(TEntity entity);
+        Task<bool> DeleteAsync(TEntity entity);
+        int SaveChanges();
+        Task<int> SaveChangesAsync();
     }
 }
