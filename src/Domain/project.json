@@ -5,7 +5,9 @@
             "version": "1.0.1",
             "type": "platform"
         },
-        "Microsoft.EntityFrameworkCore": "1.0.1"
+        "Microsoft.EntityFrameworkCore": "1.0.1",
+        "LanguageExt.Core": "1.9.3",
+        "LanguageExt.FSharp": "1.9.3"
     },
     "frameworks": {
         "netcoreapp1.0": {
