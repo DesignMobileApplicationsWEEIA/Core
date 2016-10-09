@@ -24,24 +24,27 @@ namespace Core.Domain.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public Option<IEnumerable<Place>> GetAll()
+        public Option<List<Place>> GetAll()
         {
-            throw new NotImplementedException();
+            return Optional(_dbManager.Places.ToList());
         }
 
-        public Task<Option<IEnumerable<Place>>> GetAllAsync()
+        public async Task<Option<List<Place>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var places = _dbManager.Places.ToAsyncEnumerable();
+            return Optional(await places.ToList());
         }
 
-        public Option<IEnumerable<Place>> GetBy(Func<Place, bool> predicate)
+        public Option<List<Place>> GetBy(Func<Place, bool> predicate)
         {
-            throw new NotImplementedException();
+            var places = _dbManager.Places.Where(predicate);
+            return Optional(places.ToList());
         }
 
-        public Task<Option<IEnumerable<Place>>> GetByAsync(Func<Place, bool> predicate)
+        public async Task<Option<List<Place>>> GetByAsync(Func<Place, bool> predicate)
         {
-            throw new NotImplementedException();
+            var places = _dbManager.Places.Where(predicate).ToAsyncEnumerable();
+            return Optional(await places.ToList());
         }
 
         public Option<bool> Insert(Place entity)
