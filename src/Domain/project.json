@@ -5,15 +5,7 @@
             "version": "1.0.1",
             "type": "platform"
         },
-        "Microsoft.EntityFrameworkCore": "1.0.1",
-        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.2",
-        "Microsoft.EntityFrameworkCore.Tools": {
-            "version": "1.0.0-preview2-final",
-            "imports": [
-                "dotnet5.6",
-                "portable-net45+win8"
-            ]
-        }
+        "Microsoft.EntityFrameworkCore": "1.0.1"
     },
     "frameworks": {
         "netcoreapp1.0": {
