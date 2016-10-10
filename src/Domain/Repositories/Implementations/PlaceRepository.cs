@@ -1,7 +1,11 @@
-﻿using Core.Domain.Database.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using Core.Domain.Database.Interfaces;
 using Core.Domain.Model;
 using Core.Domain.Repositories.Interfaces;
 using Domain.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Domain.Repositories.Implementations
 {
@@ -14,6 +18,11 @@ namespace Domain.Repositories.Implementations
         public override void Dispose()
         {
             DbManager?.Dispose();
+        }
+
+        public IEnumerable<Place> GetPlacesWithBuilding(Func<Place, bool> predicate)
+        {
+            return DbManager.Places.Include(x => x.Building).Where(predicate).ToList();
         }
     }
 }
