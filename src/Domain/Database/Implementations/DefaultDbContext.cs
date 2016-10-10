@@ -12,7 +12,7 @@ namespace Core.Domain.Database.Implementations
 
         public DbSet<Place> Places { get; set; }
 
-        public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
+        public DefaultDbContext(DbContextOptions options) : base(options)
         {
         }
     }

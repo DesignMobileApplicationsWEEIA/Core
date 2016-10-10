@@ -26,7 +26,7 @@ namespace Core.Domain.Model
         public static Result<TResult> Wrap<TResult>(TResult value, Func<TResult, bool> predicate,
             params string[] messages)
         {
-            return new Result<TResult>(value, predicate(value), messages);
+            return new Result<TResult>(value, predicate?.Invoke(value) ?? default(bool), messages);
         }
 
         public static Result<TResult> WrapValue<TResult>(TResult result, params string[] messages) where TResult : struct
