@@ -48,7 +48,7 @@ namespace Core.Domain.Repositories.Implementations
 
         public bool Insert(Place entity)
         {
-            throw new NotImplementedException();
+            var result = _dbManager.
         }
 
         public Task<bool> InsertAsync(Place entity)

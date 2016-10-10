@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Domain.Repositories.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : BaseEntity
+    public interface IRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {
         List<TEntity> GetBy(Func<TEntity, bool> predicate);
         Task<List<TEntity>> GetByAsync(Func<TEntity, bool> predicate);
