@@ -18,5 +18,10 @@ namespace Domain.Repositories.Implementations
         {
             return _dbManager.SaveChanges();
         }
+
+        public void Dispose()
+        {
+            _dbManager?.Dispose();
+        }
     }
 }

@@ -62,7 +62,5 @@ namespace Domain.Repositories.Abstractions
             DbManager.Set<TEntity>().RemoveRange(entities);
             return  OperationStatus.Succeed;
         }
-
-        public abstract void Dispose();
     }
 }

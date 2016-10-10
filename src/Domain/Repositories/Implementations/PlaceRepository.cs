@@ -15,11 +15,6 @@ namespace Domain.Repositories.Implementations
         {
         }
 
-        public override void Dispose()
-        {
-            DbManager?.Dispose();
-        }
-
         public IEnumerable<Place> GetPlacesWithBuilding(Func<Place, bool> predicate)
         {
             return DbManager.Places.Include(x => x.Building).Where(predicate).ToList();

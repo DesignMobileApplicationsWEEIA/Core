@@ -1,6 +1,8 @@
-﻿namespace Core.Domain.Repositories.Interfaces
+﻿using System;
+
+namespace Core.Domain.Repositories.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork: IDisposable
     {
         IPlaceRepository PlaceRepository { get; }
         int Complete();
