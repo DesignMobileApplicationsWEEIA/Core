@@ -2,9 +2,9 @@ using System;
 
 namespace Core.Domain.Model
 {
-    public sealed class Place : BaseEntity
+    public sealed class Place : IEntity
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         public string Name { get; set; }
 
@@ -15,5 +15,38 @@ namespace Core.Domain.Model
         public Building Building { get; set; }
 
         public Guid BuildingId { get; set; }
+
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public static bool operator ==(Place place1, Place place2) => place1 != null && place1.Equals(place2);
+
+        public static bool operator !=(Place place1, Place place2) => !(place1 == place2);
+
+        private bool Equals(Place other)
+        {
+            return Id == other.Id && string.Equals(Name, other.Name) && Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude) && BuildingId.Equals(other.BuildingId) && CreatedDate.Equals(other.CreatedDate);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            var a = obj as Place;
+            return a != null && Equals(a);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = Id.GetHashCode();
+                hashCode = (hashCode*397) ^ (Name?.GetHashCode() ?? 0);
+                hashCode = (hashCode*397) ^ Latitude.GetHashCode();
+                hashCode = (hashCode*397) ^ Longitude.GetHashCode();
+                hashCode = (hashCode*397) ^ BuildingId.GetHashCode();
+                hashCode = (hashCode*397) ^ CreatedDate.GetHashCode();
+                return hashCode;
+            }
+        }
     }
 }
