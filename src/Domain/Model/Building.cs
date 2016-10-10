@@ -5,7 +5,7 @@ namespace Core.Domain.Model
 {
     public sealed class Building : BaseEntity
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         public string Name { get; set; }
 
