@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Database.Interfaces;
+using Core.Domain.Repositories.Implementations;
 using Core.Domain.Repositories.Interfaces;
 
 namespace Domain.Repositories.Implementations
@@ -11,9 +12,13 @@ namespace Domain.Repositories.Implementations
         {
             _dbManager = dbManager;
             Places = new PlaceRepository(_dbManager);
+            Buildings = new BuildingRepository(_dbManager);
         }
 
         public IPlaceRepository Places { get; }
+
+        public IBuildingRepository Buildings { get; }
+
         public int Complete()
         {
             return _dbManager.SaveChanges();
