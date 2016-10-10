@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Core.Domain.Database.Interfaces;
 using Core.Domain.Model;
 using Core.Domain.Repositories.Interfaces;
-using LanguageExt;
 
 namespace Core.Domain.Repositories.Implementations
 {
