@@ -59,7 +59,7 @@ namespace Core.Domain.Repositories.Implementations
             };
 
             var result = _dbManager.Places.Add(newPlaces);
-            return result != null;
+            return result.IsKeySet;
         }
 
         public Task<bool> InsertAsync(Place entity)
@@ -69,12 +69,12 @@ namespace Core.Domain.Repositories.Implementations
 
         public int SaveChanges()
         {
-            throw new NotImplementedException();
+            return _dbManager.SaveChanges();
         }
 
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await _dbManager.SaveChangesAsync();
         }
 
         public bool Update(Place entity)
@@ -85,6 +85,11 @@ namespace Core.Domain.Repositories.Implementations
         public Task<bool> UpdateAsync(Place entity)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            _dbManager?.Dispose();
         }
     }
 }
