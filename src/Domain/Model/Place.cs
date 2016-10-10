@@ -16,9 +16,15 @@ namespace Core.Domain.Model
 
         public Guid BuildingId { get; set; }
 
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public static bool operator ==(Place place1, Place place2) => place1 != null && place1.Equals(place2);
+
+        public static bool operator !=(Place place1, Place place2) => !(place1 == place2);
+
         private bool Equals(Place other)
         {
-            return Id.Equals(other.Id) && string.Equals(Name, other.Name) && Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude) && BuildingId.Equals(other.BuildingId);
+            return Id == other.Id && string.Equals(Name, other.Name) && Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude) && BuildingId.Equals(other.BuildingId) && CreatedDate.Equals(other.CreatedDate);
         }
 
         public override bool Equals(object obj)
@@ -38,12 +44,9 @@ namespace Core.Domain.Model
                 hashCode = (hashCode*397) ^ Latitude.GetHashCode();
                 hashCode = (hashCode*397) ^ Longitude.GetHashCode();
                 hashCode = (hashCode*397) ^ BuildingId.GetHashCode();
+                hashCode = (hashCode*397) ^ CreatedDate.GetHashCode();
                 return hashCode;
             }
         }
-
-        public static bool operator ==(Place place1, Place place2) => place1 != null && place1.Equals(place2);
-
-        public static bool operator !=(Place place1, Place place2) => !(place1 == place2);
     }
 }
