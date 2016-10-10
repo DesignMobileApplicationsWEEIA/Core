@@ -12,5 +12,6 @@ namespace Core.Domain.Repositories.Interfaces
         Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> FindAll();
         Task<IEnumerable<TEntity>> FindAllAsync();
+
     }
 }
