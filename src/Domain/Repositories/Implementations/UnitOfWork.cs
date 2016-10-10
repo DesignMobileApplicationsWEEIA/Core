@@ -10,10 +10,10 @@ namespace Domain.Repositories.Implementations
         public UnitOfWork(IDbManager dbManager)
         {
             _dbManager = dbManager;
-            PlaceRepository = new PlaceRepository(_dbManager);
+            Places = new PlaceRepository(_dbManager);
         }
 
-        public IPlaceRepository PlaceRepository { get; }
+        public IPlaceRepository Places { get; }
         public int Complete()
         {
             return _dbManager.SaveChanges();
