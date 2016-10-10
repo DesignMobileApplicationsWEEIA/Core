@@ -3,7 +3,7 @@ using Core.Domain.Repositories.Interfaces;
 
 namespace Domain.Repositories.Abstractions
 {
-    public abstract class Repository<T>: IRepository<T> where T : BaseEntity
+    public abstract class Repository<TEntity>: IRepository<TEntity> where TEntity : BaseEntity
     {
         
     }
