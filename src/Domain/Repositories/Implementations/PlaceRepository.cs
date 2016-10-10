@@ -48,7 +48,18 @@ namespace Core.Domain.Repositories.Implementations
 
         public bool Insert(Place entity)
         {
-            var result = _dbManager.
+            var newPlaces = new Place
+            {
+                Id = Guid.NewGuid(),
+                Building = entity.Building,
+                BuildingId = entity.BuildingId,
+                Latitude = entity.Latitude,
+                Longitude = entity.Longitude,
+                Name = entity.Name
+            };
+
+            var result = _dbManager.Places.Add(newPlaces);
+            return result != null;
         }
 
         public Task<bool> InsertAsync(Place entity)
