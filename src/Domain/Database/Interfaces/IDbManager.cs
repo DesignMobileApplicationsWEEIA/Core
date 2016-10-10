@@ -17,5 +17,7 @@ namespace Core.Domain.Database.Interfaces
         int SaveChanges();
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }

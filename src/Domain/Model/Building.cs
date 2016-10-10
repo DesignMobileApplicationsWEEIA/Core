@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Model
 {
-    public sealed class Building : BaseEntity
+    public sealed class Building : IEntity
     {
         public long Id { get; set; }
 

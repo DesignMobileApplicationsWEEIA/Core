@@ -2,7 +2,7 @@ using System;
 
 namespace Core.Domain.Model
 {
-    public sealed class Place : BaseEntity
+    public sealed class Place : IEntity
     {
         public long Id { get; set; }
 
