@@ -8,7 +8,7 @@ namespace Core.Domain.Database.Implementations
     {
         public DbSet<Building> Buildings { get; set; }
 
-        public DbSet<FacultyWreaper> FacultyWreapers { get; set; }
+        public DbSet<Faculty> Faculties { get; set; }
 
         public DbSet<Place> Places { get; set; }
 
