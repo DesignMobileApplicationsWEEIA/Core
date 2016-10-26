@@ -12,7 +12,7 @@ namespace Core.Domain.Database.Interfaces
 
         DbSet<Building> Buildings { get; set; }
 
-        DbSet<FacultyWreaper> FacultyWreapers { get; set; }
+        DbSet<Faculty> Faculties { get; set; }
           
         int SaveChanges();
 

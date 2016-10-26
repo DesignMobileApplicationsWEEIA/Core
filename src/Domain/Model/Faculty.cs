@@ -1,8 +1,15 @@
 namespace Core.Domain.Model
 {
-    public enum Faculty
+    public class Faculty : IEntity
     {
-        EEIA,
-        FTIMS,
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string ShortName { get; set; }
+
+        public long LogoId { get; set; }
+
+        public Logo Logo { get; set; }
     }
 }
