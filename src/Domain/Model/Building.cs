@@ -12,7 +12,10 @@ namespace Core.Domain.Model
         public string Address { get; set; }
 
         public string Description { get; set; }
+
         public DateTime DateTime { get; set; } = DateTime.Now;
+
+        public string Url { get; set; }
 
         public ICollection<FacultyWreaper> Faculties { get; set; }
 
