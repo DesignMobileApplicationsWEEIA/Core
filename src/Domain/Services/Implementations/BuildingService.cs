@@ -1,4 +1,5 @@
-﻿using Core.Domain.Repositories.Interfaces;
+﻿using Core.Domain.Model;
+using Core.Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 
 namespace Domain.Services.Implementations
@@ -18,6 +19,11 @@ namespace Domain.Services.Implementations
             if (!_shouldBeDisposed) return;
             _shouldBeDisposed = false;
             _unitOfWork.Dispose();
+        }
+
+        public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
+        {
+            return Result<Building>.Wrap(new Building());
         }
     }
 }
