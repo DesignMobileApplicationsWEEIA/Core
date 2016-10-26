@@ -15,8 +15,10 @@ namespace Core.Domain.Model
 
         public DateTime DateTime { get; set; } = DateTime.Now;
 
-        public string Url { get; set; }
+        public long LogoId { get; set; }
 
+        public Logo Logo { get; set; }
+        
         public ICollection<FacultyWreaper> Faculties { get; set; }
 
         public ICollection<Place> Places { get; set; }
