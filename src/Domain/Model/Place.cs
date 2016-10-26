@@ -6,8 +6,6 @@ namespace Core.Domain.Model
     {
         public long Id { get; set; }
 
-        public string Name { get; set; }
-
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
@@ -16,15 +14,9 @@ namespace Core.Domain.Model
 
         public Guid BuildingId { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        public static bool operator ==(Place place1, Place place2) => place1 != null && place1.Equals(place2);
-
-        public static bool operator !=(Place place1, Place place2) => !(place1 == place2);
-
         private bool Equals(Place other)
         {
-            return Id == other.Id && string.Equals(Name, other.Name) && Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude) && BuildingId.Equals(other.BuildingId) && CreatedDate.Equals(other.CreatedDate);
+            return Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude);
         }
 
         public override bool Equals(object obj)
@@ -39,13 +31,7 @@ namespace Core.Domain.Model
         {
             unchecked
             {
-                int hashCode = Id.GetHashCode();
-                hashCode = (hashCode*397) ^ (Name?.GetHashCode() ?? 0);
-                hashCode = (hashCode*397) ^ Latitude.GetHashCode();
-                hashCode = (hashCode*397) ^ Longitude.GetHashCode();
-                hashCode = (hashCode*397) ^ BuildingId.GetHashCode();
-                hashCode = (hashCode*397) ^ CreatedDate.GetHashCode();
-                return hashCode;
+                return (Latitude.GetHashCode() * 397) ^ Longitude.GetHashCode();
             }
         }
     }
