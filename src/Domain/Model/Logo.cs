@@ -1,6 +1,6 @@
 ﻿namespace Core.Domain.Model
 {
-    public class Logo
+    public class Logo : IEntity
     {
         public long Id { get; set; }
 
