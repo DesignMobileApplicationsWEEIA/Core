@@ -1,6 +1,6 @@
 namespace Core.Domain.Model
 {
-    public class Faculty
+    public class Faculty : IEntity
     {
         public int Id { get; set; }
 
