@@ -3,9 +3,9 @@ using Moq;
 
 namespace Domain.Tests.Mocks
 {
-    public class IUnitOfWorkMock : IMock<IUnitOfWork>
+    public class UnitOfWorkMock : IMock<IUnitOfWork>
     {
-        public static Mock<IUnitOfWork> MockedUnitOfWork() => new IUnitOfWorkMock().Get();
+        public static Mock<IUnitOfWork> MockedUnitOfWork() => new UnitOfWorkMock().Get();
 
         public Mock<IUnitOfWork> Get()
         {
