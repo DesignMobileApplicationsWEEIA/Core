@@ -10,9 +10,14 @@ namespace Domain.Tests.Mocks
             BuildingRepositoryMock = buildingRepositoryMock;
             PlaceRepostoryMock = placeRepostoryMock;
         }
+
+        private Mock<IUnitOfWork> _mock;
+
         public Mock<IBuildingRepository> BuildingRepositoryMock { get; }
 
         public Mock<IPlaceRepository> PlaceRepostoryMock { get; }
+
+        public Mock<IUnitOfWork> IUnitOfWorkMock => _mock ?? (_mock = Get());
 
         public Mock<IUnitOfWork> Get()
         {
