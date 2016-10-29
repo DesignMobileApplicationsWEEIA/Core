@@ -1,6 +1,6 @@
 ﻿namespace Domain.Tests.Mocks
 {
-    public static class MockExtensions
+    public static class ExtensionsForMocks
     {
     }
 }
