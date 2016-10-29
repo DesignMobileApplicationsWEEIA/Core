@@ -5,12 +5,21 @@ namespace Domain.Tests.Mocks
 {
     public class UnitOfWorkMock : IMock<IUnitOfWork>
     {
-        public static Mock<IUnitOfWork> MockedUnitOfWork() => new UnitOfWorkMock().Get();
+        public UnitOfWorkMock(Mock<IBuildingRepository> buildingRepositoryMock, Mock<IPlaceRepository> placeRepostoryMock)
+        {
+            BuildingRepositoryMock = buildingRepositoryMock;
+            PlaceRepostoryMock = placeRepostoryMock;
+        }
+        public Mock<IBuildingRepository> BuildingRepositoryMock { get; }
+
+        public Mock<IPlaceRepository> PlaceRepostoryMock { get; }
 
         public Mock<IUnitOfWork> Get()
         {
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(work => work.Buildings);
+            mock.Setup(work => work.Buildings).Returns(BuildingRepositoryMock.Object);
+            mock.Setup(work => work.Places).Returns(PlaceRepostoryMock.Object);
+            mock.Setup(work => work.Complete()).Returns(1);
             return mock;
         }
     }

@@ -1,10 +1,13 @@
-﻿using Moq;
+﻿using Core.Domain.Repositories.Interfaces;
+using Moq;
 
 namespace Domain.Tests.Mocks
 {
-    public class BuildingRepositoryMock : IMock<BuildingRepositoryMock>
+    public class BuildingRepositoryMock : IMock<IBuildingRepository>
     {
-        public Mock<BuildingRepositoryMock> Get()
+        public static Mock<IBuildingRepository> MockedUnitOfWork() => new BuildingRepositoryMock().Get();
+
+        public Mock<IBuildingRepository> Get()
         {
             throw new System.NotImplementedException();
         }
