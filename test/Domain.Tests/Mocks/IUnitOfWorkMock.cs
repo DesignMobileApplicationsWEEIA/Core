@@ -3,8 +3,10 @@ using Moq;
 
 namespace Domain.Tests.Mocks
 {
-    public class MocsForBuildingService : IMock<IUnitOfWork>
+    public class IUnitOfWorkMock : IMock<IUnitOfWork>
     {
+        public static Mock<IUnitOfWork> MockedUnitOfWork() => new IUnitOfWorkMock().Get();
+
         public Mock<IUnitOfWork> Get()
         {
             var mock = new Mock<IUnitOfWork>();
