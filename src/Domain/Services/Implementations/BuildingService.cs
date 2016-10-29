@@ -18,7 +18,7 @@ namespace Domain.Services.Implementations
         {
             if (!_shouldBeDisposed) return;
             _shouldBeDisposed = false;
-            _unitOfWork.Dispose();
+            _unitOfWork?.Dispose();
         }
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
