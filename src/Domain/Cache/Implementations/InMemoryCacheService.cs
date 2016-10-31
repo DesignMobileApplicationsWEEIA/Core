@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Domain.Cache.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Domain.Cache.Implementations
 {
-    public class InMemoryCacheService
+    public class InMemoryCacheService : ICacheService
     {
         private readonly IMemoryCache _memoryCache;
 
