@@ -25,7 +25,7 @@ namespace Domain.Services.Implementations
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
             string key =
-                $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData.Direction}-{phoneData.PhoneLocation.Latitude}-{phoneData.PhoneLocation.Longitude}";
+                $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData?.Direction}-{phoneData?.PhoneLocation.Latitude}-{phoneData?.PhoneLocation.Longitude}";
             return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(new Building()), TimeSpan.FromDays(1));
         }
     }
