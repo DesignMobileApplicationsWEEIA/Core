@@ -16,11 +16,7 @@ namespace Domain.Cache.Implementations
         public T GetOrStore<T>(string key, Func<T> func, TimeSpan timeForCache)
         {
             T result;
-            if (_memoryCache.TryGetValue(key, out result))
-            {
-                return result;
-            }
-            else
+            if (!_memoryCache.TryGetValue(key, out result))
             {
                 result = func();
                 _memoryCache.Set(key, result, timeForCache);
@@ -31,11 +27,7 @@ namespace Domain.Cache.Implementations
         public async Task<T> GetOrStoreAsync<T>(string key, Func<Task<T>> func, TimeSpan timeForCache)
         {
             T result;
-            if (_memoryCache.TryGetValue(key, out result))
-            {
-                return result;
-            }
-            else
+            if (!_memoryCache.TryGetValue(key, out result))
             {
                 result = await func();
                 _memoryCache.Set(key, await func(), timeForCache);

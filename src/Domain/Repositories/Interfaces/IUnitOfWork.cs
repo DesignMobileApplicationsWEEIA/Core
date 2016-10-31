@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.Cache.Interfaces;
 
 namespace Core.Domain.Repositories.Interfaces
 {
@@ -6,6 +7,7 @@ namespace Core.Domain.Repositories.Interfaces
     {
         IPlaceRepository Places { get; }
         IBuildingRepository Buildings { get; }
+        ICacheService Cache { get; }
         int Complete();
     }
 }
