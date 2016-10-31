@@ -1,4 +1,5 @@
-﻿using Core.Domain.Model;
+﻿using System;
+using Core.Domain.Model;
 using Core.Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 
@@ -23,7 +24,9 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
-            return Result<Building>.Wrap(new Building());
+            string key =
+                $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData.Direction}-{phoneData.PhoneLocation.Latitude}-{phoneData.PhoneLocation.Longitude}";
+            return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(new Building()), TimeSpan.FromDays(1));
         }
     }
 }
