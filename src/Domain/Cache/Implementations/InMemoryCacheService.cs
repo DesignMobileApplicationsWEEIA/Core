@@ -36,5 +36,16 @@ namespace Domain.Cache.Implementations
             }
             return result;
         }
+
+        public static string GenerateKey(string name, params string[] args)
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(name);
+            foreach (string arg in args)
+            {
+                stringBuilder.Append($"-{arg}");
+            }
+            return stringBuilder.ToString();
+        }
     }
 }
