@@ -26,8 +26,10 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
-            string key =
-                $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData?.Direction.ToString("0.00", CultureInfo.InvariantCulture)}-{phoneData?.PhoneLocation.Latitude.ToString("0.00", CultureInfo.InvariantCulture)}-{phoneData?.PhoneLocation.Longitude.ToString("0.00", CultureInfo.InvariantCulture)}";
+            string key = _unitOfWork.Cache.GenerateKey(nameof(BuildingService), nameof(SearchBuildingWithPhoneData),
+                phoneData?.Direction.ToString("0.00", CultureInfo.InvariantCulture),
+                phoneData?.PhoneLocation.Latitude.ToString("0.00", CultureInfo.InvariantCulture),
+                phoneData?.PhoneLocation.Longitude.ToString("0.00", CultureInfo.InvariantCulture));
             var building = _unitOfWork.Buildings.FindAllInfo(x => phoneData.IsInVisualField(x));
             return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(building), TimeSpan.FromDays(1));
         }
