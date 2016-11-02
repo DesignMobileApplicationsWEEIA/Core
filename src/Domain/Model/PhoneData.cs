@@ -7,6 +7,7 @@
 
         public bool IsInVisualField(Building building)
         {
+            var x = building.Places;
             return true;
         }
     }
