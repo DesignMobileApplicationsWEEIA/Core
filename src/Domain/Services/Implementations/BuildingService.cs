@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using Core.Domain.Model;
 using Core.Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
+using Domain.Utils;
 
 namespace Domain.Services.Implementations
 {
@@ -24,9 +26,12 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
-            string key =
-                $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData?.Direction}-{phoneData?.PhoneLocation.Latitude}-{phoneData?.PhoneLocation.Longitude}";
-            return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(new Building()), TimeSpan.FromDays(1));
+            string key = _unitOfWork.Cache.GenerateKey(nameof(BuildingService), nameof(SearchBuildingWithPhoneData),
+                phoneData?.Direction.ToString("0.00", CultureInfo.InvariantCulture),
+                phoneData?.PhoneLocation.Latitude.ToString("0.00", CultureInfo.InvariantCulture),
+                phoneData?.PhoneLocation.Longitude.ToString("0.00", CultureInfo.InvariantCulture));
+            var building = _unitOfWork.Buildings.FindAllInfo(x => phoneData.IsInVisualField(x));
+            return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(building), TimeSpan.FromDays(1));
         }
     }
 }
