@@ -2,6 +2,7 @@
 using Core.Domain.Model;
 using Core.Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
+using Domain.Utils;
 
 namespace Domain.Services.Implementations
 {
@@ -26,6 +27,7 @@ namespace Domain.Services.Implementations
         {
             string key =
                 $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData?.Direction}-{phoneData?.PhoneLocation.Latitude}-{phoneData?.PhoneLocation.Longitude}";
+            var building = _unitOfWork.Buildings.Find(x => phoneData.IsInVisualField(x));
             return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(new Building()), TimeSpan.FromDays(1));
         }
     }
