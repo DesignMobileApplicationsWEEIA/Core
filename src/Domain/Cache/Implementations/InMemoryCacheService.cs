@@ -47,5 +47,10 @@ namespace Domain.Cache.Implementations
             }
             return stringBuilder.ToString();
         }
+
+        public void Clear(string key)
+        {
+            _memoryCache.Remove(key);
+        }
     }
 }
