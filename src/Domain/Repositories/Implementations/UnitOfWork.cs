@@ -7,9 +7,10 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Domain.Repositories.Implementations
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
         private readonly IDbManager _dbManager;
+        private bool _shouldBeDisposed = true;
 
         public UnitOfWork(IDbManager dbManager, IMemoryCache memoryCache)
         {
@@ -32,7 +33,12 @@ namespace Domain.Repositories.Implementations
 
         public void Dispose()
         {
-            _dbManager?.Dispose();
+            if (_shouldBeDisposed)
+            {
+                _shouldBeDisposed = false;
+                _dbManager?.Dispose();
+                Cache?.Dispose();
+            }
         }
     }
 }
