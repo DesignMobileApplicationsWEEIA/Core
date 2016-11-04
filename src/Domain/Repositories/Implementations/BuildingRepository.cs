@@ -17,7 +17,7 @@ namespace Core.Domain.Repositories.Implementations
 
         public Building FindAllInfo(Expression<Func<Building, bool>> predicate)
         {
-            return DbManager.Buildings.Include(x => x.Places).Include(x => x.Faculties).FirstOrDefault(predicate);
+            return DbManager.Buildings.Include(x => x.Places).Include(x => x.Faculties).AsNoTracking().FirstOrDefault(predicate);
         }
     }
 }
