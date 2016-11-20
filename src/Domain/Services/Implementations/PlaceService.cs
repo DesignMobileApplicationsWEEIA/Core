@@ -1,4 +1,5 @@
-﻿using Domain.Model.Api;
+﻿using System;
+using Domain.Model.Api;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 
@@ -23,7 +24,11 @@ namespace Domain.Services.Implementations
 
         public Result<bool> Add(ApiPlace place, string userId)
         {
-            throw new System.NotImplementedException();
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var searchedBuilding = _unitOfWork.Buildings.Find(building => building.Equals(place.Building));
+            }
+            return Result<bool>.Error();
         }
     }
 }
