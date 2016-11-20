@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Domain.Model
+namespace Domain.Model.Database
 {
     public sealed class Place : IEntity
     {
@@ -12,7 +12,11 @@ namespace Core.Domain.Model
 
         public Building Building { get; set; }
 
-        public Guid BuildingId { get; set; }
+        public long BuildingId { get; set; }
+
+        public VirtualCampusUser User { get; set; }
+
+        public string UserId { get; set; }
 
         private bool Equals(Place other)
         {

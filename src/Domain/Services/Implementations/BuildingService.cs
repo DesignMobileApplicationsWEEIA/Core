@@ -1,8 +1,10 @@
 ﻿using System;
-using Core.Domain.Model;
-using Core.Domain.Repositories.Interfaces;
+using System.Globalization;
+using System.Linq;
+using Domain.Model.Database;
+using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
-
+using Domain.Model.Api;
 namespace Domain.Services.Implementations
 {
     public class BuildingService : IBuildingService
@@ -24,9 +26,16 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
-            string key =
-                $"{nameof(BuildingService)}-{nameof(SearchBuildingWithPhoneData)}-{phoneData?.Direction}-{phoneData?.PhoneLocation.Latitude}-{phoneData?.PhoneLocation.Longitude}";
-            return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(new Building()), TimeSpan.FromDays(1));
+            string key = _unitOfWork.Cache.GenerateKey(nameof(BuildingService), nameof(SearchBuildingWithPhoneData),
+                phoneData?.Direction.ToString("0.00", CultureInfo.InvariantCulture),
+                phoneData?.PhoneLocation.Latitude.ToString("0.00", CultureInfo.InvariantCulture),
+                phoneData?.PhoneLocation.Longitude.ToString("0.00", CultureInfo.InvariantCulture));
+            return _unitOfWork.Cache.GetOrStore(key, () =>
+            {
+                return
+                    Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
+                        x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < 0.1 && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < 0.1)));
+            }, TimeSpan.FromDays(1));
         }
     }
 }

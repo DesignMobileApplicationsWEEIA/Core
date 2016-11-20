@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Domain.Database.Interfaces;
-using Core.Domain.Model;
-using Core.Domain.Repositories.Interfaces;
 using Domain.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Domain.Database.Interfaces;
+using Domain.Model.Database;
+using Domain.Repositories.Interfaces;
 
 namespace Domain.Repositories.Implementations
 {
     public class PlaceRepository : Repository<Place>, IPlaceRepository
     {
-        public PlaceRepository(IDbManager dbManager) : base(dbManager)
+        public PlaceRepository(IDbContext dbContext) : base(dbContext)
         {
         }
 
         public IEnumerable<Place> GetPlacesWithBuilding(Func<Place, bool> predicate)
         {
-            return DbManager.Places.Include(x => x.Building).Where(predicate).ToList();
+            return DbContext.Places.Include(x => x.Building).Where(predicate).ToList();
         }
     }
 }

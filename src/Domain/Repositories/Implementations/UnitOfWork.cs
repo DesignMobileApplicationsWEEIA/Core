@@ -1,21 +1,21 @@
-﻿using Core.Domain.Database.Interfaces;
-using Core.Domain.Repositories.Implementations;
-using Core.Domain.Repositories.Interfaces;
-using Domain.Cache.Implementations;
+﻿using Domain.Cache.Implementations;
 using Domain.Cache.Interfaces;
+using Domain.Database.Interfaces;
+using Domain.Repositories.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Domain.Repositories.Implementations
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbManager _dbManager;
+        private readonly IDbContext _dbContext;
+        private bool _shouldBeDisposed = true;
 
-        public UnitOfWork(IDbManager dbManager, IMemoryCache memoryCache)
+        public UnitOfWork(IDbContext dbContext, IMemoryCache memoryCache)
         {
-            _dbManager = dbManager;
-            Places = new PlaceRepository(_dbManager);
-            Buildings = new BuildingRepository(_dbManager);
+            _dbContext = dbContext;
+            Places = new PlaceRepository(_dbContext);
+            Buildings = new BuildingRepository(_dbContext);
             Cache = new InMemoryCacheService(memoryCache);
         }
 
@@ -27,12 +27,17 @@ namespace Domain.Repositories.Implementations
 
         public int Complete()
         {
-            return _dbManager.SaveChanges();
+            return _dbContext.SaveChanges();
         }
 
         public void Dispose()
         {
-            _dbManager?.Dispose();
+            if (_shouldBeDisposed)
+            {
+                _shouldBeDisposed = false;
+                _dbContext?.Dispose();
+                Cache?.Dispose();
+            }
         }
     }
 }

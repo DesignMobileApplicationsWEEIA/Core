@@ -9,6 +9,7 @@ namespace Domain.Cache.Implementations
     public class InMemoryCacheService : ICacheService
     {
         private readonly IMemoryCache _memoryCache;
+        private bool _shouldBeDisposed = true;
 
         public InMemoryCacheService(IMemoryCache memoryCache)
         {
@@ -35,6 +36,31 @@ namespace Domain.Cache.Implementations
                 _memoryCache.Set(key, await func(), timeForCache);
             }
             return result;
+        }
+
+        public string GenerateKey(string name, params string[] args)
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(name);
+            foreach (string arg in args)
+            {
+                stringBuilder.Append($"-{arg}");
+            }
+            return stringBuilder.ToString();
+        }
+
+        public void Clear(string key)
+        {
+            _memoryCache.Remove(key);
+        }
+
+        public void Dispose()
+        {
+            if (_shouldBeDisposed)
+            {
+                _shouldBeDisposed = false;
+                _memoryCache.Dispose();
+            }
         }
     }
 }

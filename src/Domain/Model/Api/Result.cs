@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Core.Domain.Model
+namespace Domain.Model.Api
 {
     public class Result<T>
     {

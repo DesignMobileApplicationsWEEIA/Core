@@ -1,26 +1,25 @@
 {
-    "version": "1.0.4.5-*",
-    "dependencies": {
-        "Microsoft.NETCore.App": {
-            "version": "1.0.1",
-            "type": "platform"
-        },
-        "Microsoft.EntityFrameworkCore": "1.0.1",
-        "LanguageExt.Core": "1.9.3",
-        "LanguageExt.FSharp": "1.9.3",
-        "Microsoft.Extensions.Caching.Abstractions": "1.0.0",
-        "Microsoft.Extensions.Caching.Memory": "1.0.0",
-        "Newtonsoft.Json": "9.0.1"
+    "version": "1.0.5",
+    "buildOptions": {
+        "debugType": "portable"
     },
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "LanguageExt.Core": "1.9.7",
+    "LanguageExt.FSharp": "1.9.7",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.Extensions.Caching.Abstractions": "1.1.0",
+    "Microsoft.Extensions.Caching.Memory": "1.1.0",
+    "Newtonsoft.Json": "9.0.1",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0",
+    "AutoMapper": "5.1.1"
+  },
     "frameworks": {
-        "netcoreapp1.0": {
-            "imports": [
-                "dotnet5.6",
-                "portable-net45+win8"
-            ]
+        "netstandard1.6": {
+            "dependencies": {}
         }
     },
     "tooling": {
-        "defaultNamespace": "Core.Domain"
+        "defaultNamespace": "Domain"
     }
 }
