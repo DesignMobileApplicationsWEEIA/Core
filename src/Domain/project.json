@@ -3,15 +3,15 @@
     "buildOptions": {
         "debugType": "portable"
     },
-    "dependencies": {
-        "Microsoft.EntityFrameworkCore": "1.0.1",
-        "LanguageExt.Core": "1.9.3",
-        "LanguageExt.FSharp": "1.9.3",
-        "Microsoft.Extensions.Caching.Abstractions": "1.0.0",
-        "Microsoft.Extensions.Caching.Memory": "1.0.0",
-        "Newtonsoft.Json": "9.0.1",
-        "NETStandard.Library": "1.6.1",
-    },
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "LanguageExt.Core": "1.9.7",
+    "LanguageExt.FSharp": "1.9.7",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.Extensions.Caching.Abstractions": "1.1.0",
+    "Microsoft.Extensions.Caching.Memory": "1.1.0",
+    "Newtonsoft.Json": "9.0.2-beta1",
+  },
     "frameworks": {
         "netstandard1.6": {
             "dependencies": {}
