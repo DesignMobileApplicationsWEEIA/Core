@@ -1,7 +1,7 @@
 ﻿using System;
 using Domain.Cache.Interfaces;
 
-namespace Core.Domain.Repositories.Interfaces
+namespace Domain.Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -1,4 +1,4 @@
-﻿using Core.Domain.Repositories.Interfaces;
+﻿using Domain.Repositories.Interfaces;
 using Moq;
 
 namespace Domain.Tests.Mocks

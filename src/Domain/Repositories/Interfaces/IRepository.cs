@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Core.Domain.Model;
+using Domain.Model;
+using Domain.Model.Database;
 
-namespace Core.Domain.Repositories.Interfaces
+namespace Domain.Repositories.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {
@@ -12,7 +13,7 @@ namespace Core.Domain.Repositories.Interfaces
         Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> FindAll();
         Task<IEnumerable<TEntity>> FindAllAsync();
-        OperationStatus Add(TEntity entity);
+        IQueryResult<TEntity> Add(TEntity entity);
         OperationStatus AddRange(IEnumerable<TEntity> entities);
         OperationStatus Remove(TEntity entity);
         OperationStatus RemoveRange(IEnumerable<TEntity> entities);

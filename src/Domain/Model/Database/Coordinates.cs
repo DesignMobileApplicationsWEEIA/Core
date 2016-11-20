@@ -1,4 +1,4 @@
-namespace Core.Domain.Model
+namespace Domain.Model.Database
 {
     public sealed class Coordinates : IEntity
     {
