@@ -1,5 +1,6 @@
 ﻿using System;
 using Domain.Model.Api;
+using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 
@@ -26,7 +27,15 @@ namespace Domain.Services.Implementations
         {
             if (!string.IsNullOrEmpty(userId))
             {
-                var searchedBuilding = _unitOfWork.Buildings.Find(building => building.Equals(place.Building));
+                var res = _unitOfWork.Buildings.Add(ApiBuilding.ToBuilding(place.Building));
+                if (res.HasValue)
+                {
+                    var newPlace = ApiPlace.ToPlace(place);
+                    newPlace.UserId = userId;
+                    newPlace.BuildingId = res.Value.Id;
+                    _unitOfWork.Places.Add(ApiPlace.ToPlace(place));
+                    return Result<bool>.WrapValue(_unitOfWork.Complete() == 1);
+                }
             }
             return Result<bool>.Error();
         }

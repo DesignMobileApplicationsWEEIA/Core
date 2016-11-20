@@ -13,7 +13,7 @@ namespace Domain.Repositories.Interfaces
         Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> FindAll();
         Task<IEnumerable<TEntity>> FindAllAsync();
-        OperationStatus Add(TEntity entity);
+        IQueryResult<TEntity> Add(TEntity entity);
         OperationStatus AddRange(IEnumerable<TEntity> entities);
         OperationStatus Remove(TEntity entity);
         OperationStatus RemoveRange(IEnumerable<TEntity> entities);

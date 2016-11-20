@@ -40,10 +40,10 @@ namespace Domain.Repositories.Abstractions
             return await DbContext.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public OperationStatus Add(TEntity entity)
+        public IQueryResult<TEntity> Add(TEntity entity)
         {
             var result = DbContext.Set<TEntity>().Add(entity);
-            return result.IsKeySet ? OperationStatus.Succeed : OperationStatus.Error;
+            return new QueryResult<TEntity>(result.Entity, result.IsKeySet);
         }
 
         public OperationStatus AddRange(IEnumerable<TEntity> entities)

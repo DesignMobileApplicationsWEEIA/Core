@@ -12,7 +12,7 @@ namespace Domain.Model.Database
 
         public Building Building { get; set; }
 
-        public Guid BuildingId { get; set; }
+        public long BuildingId { get; set; }
 
         public VirtualCampusUser User { get; set; }
 
