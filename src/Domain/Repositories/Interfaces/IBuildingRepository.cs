@@ -1,6 +1,6 @@
 using System;
 using System.Linq.Expressions;
-using Domain.Model;
+using Domain.Model.Database;
 
 namespace Domain.Repositories.Interfaces
 {

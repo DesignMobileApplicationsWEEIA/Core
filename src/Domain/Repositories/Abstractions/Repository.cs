@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Domain.Database.Interfaces;
 using Domain.Model;
+using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

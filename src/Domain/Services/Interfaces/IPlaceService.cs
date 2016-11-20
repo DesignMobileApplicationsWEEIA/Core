@@ -1,5 +1,4 @@
-﻿using Domain.ApiModel;
-using Domain.Model;
+﻿using Domain.Model.Api;
 
 namespace Domain.Services.Interfaces
 {

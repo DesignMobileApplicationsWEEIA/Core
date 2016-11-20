@@ -1,4 +1,4 @@
-using Domain.Model;
+using Domain.Model.Api;
 using FluentAssertions;
 using Xunit;
 

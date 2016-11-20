@@ -1,4 +1,6 @@
-﻿namespace Domain.Model
+﻿using Domain.Model.Database;
+
+namespace Domain.Model.Math
 {
     public struct Point
     {

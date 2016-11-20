@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using Domain.Database.Interfaces;
-using Domain.Model;
+using Domain.Model.Database;
 using Domain.Repositories.Abstractions;
 using Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;

@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Model;
+using Domain.Model.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Database.Interfaces

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using Domain.Model;
+using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
-
+using Domain.Model.Api;
 namespace Domain.Services.Implementations
 {
     public class BuildingService : IBuildingService

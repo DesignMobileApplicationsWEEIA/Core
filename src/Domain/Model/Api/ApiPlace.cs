@@ -1,4 +1,4 @@
-﻿namespace Domain.ApiModel
+﻿namespace Domain.Model.Api
 {
     public class ApiPlace
     {

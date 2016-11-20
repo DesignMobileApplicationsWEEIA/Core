@@ -4,7 +4,7 @@ using Domain.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Domain.Database.Interfaces;
-using Domain.Model;
+using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 
 namespace Domain.Repositories.Implementations

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Domain.Model
+namespace Domain.Model.Database
 {
     public class VirtualCampusUser : IdentityUser, IEntity
     {
