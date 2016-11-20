@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Core.Domain.Model;
+using Domain.Model;
 
-namespace Core.Domain.Repositories.Interfaces
+namespace Domain.Repositories.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {

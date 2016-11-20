@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Domain.Utils;
-
-namespace Core.Domain.Model
+﻿namespace Domain.Model
 {
     public class PhoneData
     {

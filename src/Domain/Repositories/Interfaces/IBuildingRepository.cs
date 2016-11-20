@@ -1,8 +1,8 @@
 using System;
 using System.Linq.Expressions;
-using Core.Domain.Model;
+using Domain.Model;
 
-namespace Core.Domain.Repositories.Interfaces
+namespace Domain.Repositories.Interfaces
 {
     public interface IBuildingRepository : IRepository<Building>
     {

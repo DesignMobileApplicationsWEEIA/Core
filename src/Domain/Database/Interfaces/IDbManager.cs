@@ -1,10 +1,10 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Domain.Model;
+using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Domain.Database.Interfaces
+namespace Domain.Database.Interfaces
 {
     public interface IDbManager : IDisposable
     {

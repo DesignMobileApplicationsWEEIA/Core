@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Domain.Model
+namespace Domain.Model
 {
     public sealed class Place : IEntity
     {

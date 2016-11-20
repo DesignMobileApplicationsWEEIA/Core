@@ -1,13 +1,13 @@
 using System;
-using System.Linq.Expressions;
 using System.Linq;
-using Core.Domain.Database.Interfaces;
-using Core.Domain.Model;
-using Core.Domain.Repositories.Interfaces;
+using System.Linq.Expressions;
+using Domain.Database.Interfaces;
+using Domain.Model;
 using Domain.Repositories.Abstractions;
+using Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Domain.Repositories.Implementations
+namespace Domain.Repositories.Implementations
 {
     public class BuildingRepository : Repository<Building>, IBuildingRepository
     {

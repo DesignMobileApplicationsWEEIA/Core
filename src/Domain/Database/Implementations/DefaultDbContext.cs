@@ -1,8 +1,8 @@
-using Core.Domain.Database.Interfaces;
-using Core.Domain.Model;
+using Domain.Database.Interfaces;
+using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Domain.Database.Implementations
+namespace Domain.Database.Implementations
 {
     public class DefaultDbContext : DbContext, IDbManager
     {

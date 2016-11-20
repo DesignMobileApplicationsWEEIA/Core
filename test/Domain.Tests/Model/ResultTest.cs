@@ -1,8 +1,8 @@
-using Core.Domain.Model;
+using Domain.Model;
 using FluentAssertions;
 using Xunit;
 
-namespace Core.Domain.Tests.Model
+namespace Domain.Tests.Model
 {
     public class ResultTest
     {

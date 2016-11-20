@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using Core.Domain.Model;
-using Core.Domain.Repositories.Interfaces;
+using Domain.Model;
+using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 
 namespace Domain.Services.Implementations

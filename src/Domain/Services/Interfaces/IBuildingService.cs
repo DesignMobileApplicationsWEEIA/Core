@@ -1,4 +1,4 @@
-﻿using Core.Domain.Model;
+﻿using Domain.Model;
 
 namespace Domain.Services.Interfaces
 {

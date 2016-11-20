@@ -1,8 +1,7 @@
-﻿using Core.Domain.Database.Interfaces;
-using Core.Domain.Repositories.Implementations;
-using Core.Domain.Repositories.Interfaces;
-using Domain.Cache.Implementations;
+﻿using Domain.Cache.Implementations;
 using Domain.Cache.Interfaces;
+using Domain.Database.Interfaces;
+using Domain.Repositories.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Domain.Repositories.Implementations

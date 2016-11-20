@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Core.Domain.Model
+namespace Domain.Model
 {
     public sealed class Building : IEntity
     {

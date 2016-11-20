@@ -1,4 +1,4 @@
-﻿namespace Core.Domain.Model
+﻿namespace Domain.Model
 {
     public struct Point
     {

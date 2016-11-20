@@ -1,4 +1,4 @@
-﻿namespace Core.Domain.Tests.Model
+﻿namespace Domain.Tests.Model
 {
     public class PhoneDataTests
     {

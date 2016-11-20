@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Core.Domain.Database.Interfaces;
-using Core.Domain.Model;
-using Core.Domain.Repositories.Interfaces;
+using Domain.Database.Interfaces;
+using Domain.Model;
+using Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories.Abstractions

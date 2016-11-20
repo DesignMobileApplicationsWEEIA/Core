@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Core.Domain.Model;
+using Domain.Model;
 
-namespace Core.Domain.Repositories.Interfaces
+namespace Domain.Repositories.Interfaces
 {
     public interface IPlaceRepository : IRepository<Place>
     {
