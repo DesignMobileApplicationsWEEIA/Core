@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
@@ -29,8 +30,12 @@ namespace Domain.Services.Implementations
                 phoneData?.Direction.ToString("0.00", CultureInfo.InvariantCulture),
                 phoneData?.PhoneLocation.Latitude.ToString("0.00", CultureInfo.InvariantCulture),
                 phoneData?.PhoneLocation.Longitude.ToString("0.00", CultureInfo.InvariantCulture));
-            var building = _unitOfWork.Buildings.FindAllInfo(x => phoneData.IsInVisualField(x));
-            return _unitOfWork.Cache.GetOrStore(key, () => Result<Building>.Wrap(building), TimeSpan.FromDays(1));
+            return _unitOfWork.Cache.GetOrStore(key, () =>
+            {
+                return
+                    Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
+                        x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < 0.1 && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < 0.1)));
+            }, TimeSpan.FromDays(1));
         }
     }
 }
