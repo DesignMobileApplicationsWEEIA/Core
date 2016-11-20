@@ -8,14 +8,14 @@ namespace Domain.Repositories.Implementations
 {
     public sealed class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbManager _dbManager;
+        private readonly IDbContext _dbContext;
         private bool _shouldBeDisposed = true;
 
-        public UnitOfWork(IDbManager dbManager, IMemoryCache memoryCache)
+        public UnitOfWork(IDbContext dbContext, IMemoryCache memoryCache)
         {
-            _dbManager = dbManager;
-            Places = new PlaceRepository(_dbManager);
-            Buildings = new BuildingRepository(_dbManager);
+            _dbContext = dbContext;
+            Places = new PlaceRepository(_dbContext);
+            Buildings = new BuildingRepository(_dbContext);
             Cache = new InMemoryCacheService(memoryCache);
         }
 
@@ -27,7 +27,7 @@ namespace Domain.Repositories.Implementations
 
         public int Complete()
         {
-            return _dbManager.SaveChanges();
+            return _dbContext.SaveChanges();
         }
 
         public void Dispose()
@@ -35,7 +35,7 @@ namespace Domain.Repositories.Implementations
             if (_shouldBeDisposed)
             {
                 _shouldBeDisposed = false;
-                _dbManager?.Dispose();
+                _dbContext?.Dispose();
                 Cache?.Dispose();
             }
         }

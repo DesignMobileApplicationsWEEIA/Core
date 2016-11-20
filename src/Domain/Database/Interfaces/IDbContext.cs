@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Database.Interfaces
 {
-    public interface IDbManager : IDisposable
+    public interface IDbContext : IDisposable
     {
         DbSet<Place> Places { get; set; }
 
