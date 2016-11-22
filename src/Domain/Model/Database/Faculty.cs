@@ -8,6 +8,10 @@ namespace Domain.Model.Database
 
         public string ShortName { get; set; }
 
+        public long BuildingId { get; set; }
+
+        public Building Building { get; set; }
+
         public long LogoId { get; set; }
 
         public Logo Logo { get; set; }
