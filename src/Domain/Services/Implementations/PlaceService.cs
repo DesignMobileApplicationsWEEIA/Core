@@ -31,7 +31,6 @@ namespace Domain.Services.Implementations
                 if (res.HasValue)
                 {
                     var newPlace = ApiPlace.ToPlace(place);
-                    newPlace.UserId = userId;
                     newPlace.BuildingId = res.Value.Id;
                     _unitOfWork.Places.Add(ApiPlace.ToPlace(place));
                     return Result<bool>.WrapValue(_unitOfWork.Complete() == 1);
