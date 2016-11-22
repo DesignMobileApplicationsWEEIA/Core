@@ -1,5 +1,3 @@
-using System;
-
 namespace Domain.Model.Database
 {
     public sealed class Place : IEntity
