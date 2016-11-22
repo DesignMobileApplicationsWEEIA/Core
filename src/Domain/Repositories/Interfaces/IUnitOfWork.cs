@@ -8,6 +8,7 @@ namespace Domain.Repositories.Interfaces
         IPlaceRepository Places { get; }
         IBuildingRepository Buildings { get; }
         IAchievementRepository Achievements { get; }
+        IFacultyRepository Faculties { get; }
         ICacheService Cache { get; }
         int Complete();
     }
