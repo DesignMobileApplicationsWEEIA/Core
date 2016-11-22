@@ -2,10 +2,11 @@
 using Domain.Model.Api;
 using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
+using Domain.Services.Interfaces;
 
 namespace Domain.Services.Implementations
 {
-    public class AchievementService
+    public class AchievementService : IAchievementService
     {
         private readonly IUnitOfWork _unitOfWork;
 
