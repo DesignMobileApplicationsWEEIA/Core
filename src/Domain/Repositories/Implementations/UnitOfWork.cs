@@ -18,6 +18,7 @@ namespace Domain.Repositories.Implementations
             Buildings = new BuildingRepository(_dbContext);
             Cache = new InMemoryCacheService(memoryCache);
             Achievements = new AchievementRepository(_dbContext);
+            Faculties = new FacultyRepository(_dbContext);
         }
 
         public IPlaceRepository Places { get; }
@@ -42,5 +43,7 @@ namespace Domain.Repositories.Implementations
                 Cache?.Dispose();
             }
         }
+
+        public IFacultyRepository Faculties { get; }
     }
 }
