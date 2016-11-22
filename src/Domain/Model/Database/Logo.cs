@@ -10,8 +10,8 @@
 
         public byte[] Content { get; set; }
 
-        public long BuildingId { get; set; }
+        public Faculty Faculty { get; set; }
 
-        public Building Building { get; set; }
+        public long FacultyId { get; set; }
     }
 }

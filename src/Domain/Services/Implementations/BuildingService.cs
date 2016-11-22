@@ -34,7 +34,7 @@ namespace Domain.Services.Implementations
             {
                 return
                     Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
-                        x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < 0.1 && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < 0.1)));
+                        x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
             }, TimeSpan.FromDays(1));
         }
     }
