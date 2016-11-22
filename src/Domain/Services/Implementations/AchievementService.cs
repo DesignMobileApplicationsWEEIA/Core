@@ -16,7 +16,7 @@ namespace Domain.Services.Implementations
 
         public Result<IEnumerable<Achievement>> GetAll()
         {
-            return _unitOfWork.Ac
+            return Result<IEnumerable<Achievement>>.Wrap(_unitOfWork.Achievements.FindAll());
         }
     }
 }
