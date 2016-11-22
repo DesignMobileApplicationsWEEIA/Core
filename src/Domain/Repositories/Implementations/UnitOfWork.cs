@@ -17,6 +17,7 @@ namespace Domain.Repositories.Implementations
             Places = new PlaceRepository(_dbContext);
             Buildings = new BuildingRepository(_dbContext);
             Cache = new InMemoryCacheService(memoryCache);
+            Achievements = new AchievementRepository(_dbContext);
         }
 
         public IPlaceRepository Places { get; }
@@ -24,6 +25,8 @@ namespace Domain.Repositories.Implementations
         public IBuildingRepository Buildings { get; }
 
         public ICacheService Cache { get; }
+
+        public IAchievementRepository Achievements { get; }
 
         public int Complete()
         {
