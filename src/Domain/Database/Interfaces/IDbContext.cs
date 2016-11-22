@@ -13,6 +13,8 @@ namespace Domain.Database.Interfaces
         DbSet<Building> Buildings { get; set; }
 
         DbSet<Faculty> Faculties { get; set; }
+
+        DbSet<Achievement> Achievements { get; set; }
           
         int SaveChanges();
 
