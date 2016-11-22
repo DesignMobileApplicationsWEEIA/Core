@@ -14,10 +14,6 @@ namespace Domain.Model.Database
 
         public long BuildingId { get; set; }
 
-        public VirtualCampusUser User { get; set; }
-
-        public string UserId { get; set; }
-
         private bool Equals(Place other)
         {
             return Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude);
