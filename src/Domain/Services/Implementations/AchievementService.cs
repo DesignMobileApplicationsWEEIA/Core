@@ -9,6 +9,14 @@ namespace Domain.Services.Implementations
     public class AchievementService : IAchievementService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private bool _shouldBeDisposed = true;
+
+        public void Dispose()
+        {
+            if (!_shouldBeDisposed) return;
+            _shouldBeDisposed = false;
+            _unitOfWork?.Dispose();
+        }
 
         public AchievementService(IUnitOfWork unitOfWork)
         {
@@ -19,5 +27,6 @@ namespace Domain.Services.Implementations
         {
             return Result<IEnumerable<Achievement>>.Wrap(_unitOfWork.Achievements.FindAll());
         }
+
     }
 }

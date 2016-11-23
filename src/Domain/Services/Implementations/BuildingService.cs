@@ -13,17 +13,19 @@ namespace Domain.Services.Implementations
         private readonly IUnitOfWork _unitOfWork;
         private bool _shouldBeDisposed = true;
 
-        public BuildingService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
         public void Dispose()
         {
             if (!_shouldBeDisposed) return;
             _shouldBeDisposed = false;
             _unitOfWork?.Dispose();
         }
+
+        public BuildingService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {

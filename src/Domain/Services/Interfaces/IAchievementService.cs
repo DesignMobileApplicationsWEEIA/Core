@@ -4,7 +4,7 @@ using Domain.Model.Database;
 
 namespace Domain.Services.Interfaces
 {
-    public interface IAchievementService
+    public interface IAchievementService : IService
     {
         Result<IEnumerable<Achievement>> GetAll();
     }
