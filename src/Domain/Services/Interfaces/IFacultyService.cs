@@ -3,8 +3,8 @@ using Domain.Model.Database;
 
 namespace Domain.Services.Interfaces
 {
-    public interface ILogoService : IService
+    public interface IFacultyService : IService
     {
-        Result<Logo> GetAll();
+        Result<Faculty> GetAll();
     }
 }
