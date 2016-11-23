@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Domain.Model.Database;
@@ -26,16 +27,14 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
-            string key = _unitOfWork.Cache.GenerateKey(nameof(BuildingService), nameof(SearchBuildingWithPhoneData),
-                phoneData?.Direction.ToString("0.00", CultureInfo.InvariantCulture),
-                phoneData?.PhoneLocation.Latitude.ToString("0.00", CultureInfo.InvariantCulture),
-                phoneData?.PhoneLocation.Longitude.ToString("0.00", CultureInfo.InvariantCulture));
-            return _unitOfWork.Cache.GetOrStore(key, () =>
-            {
-                return
-                    Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
-                        x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
-            }, TimeSpan.FromDays(1));
+            return
+                Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
+                    x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
+        }
+
+        public Result<IEnumerable<Building>> GetAll()
+        {
+            return Result<Building>.Wrap(_unitOfWork.Buildings.FindAll());
         }
     }
 }

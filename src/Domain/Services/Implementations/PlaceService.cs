@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Domain.Model.Api;
 using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
@@ -37,6 +38,11 @@ namespace Domain.Services.Implementations
                 }
             }
             return Result<bool>.Error();
+        }
+
+        public Result<IEnumerable<Place>> GetAll(ApiPlace place, string userId)
+        {
+           return  Result<IEnumerable<Place>>.Wrap(_unitOfWork.Places.FindAll());
         }
     }
 }
