@@ -32,27 +32,25 @@ namespace Domain.Services.Implementations
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
             var place =
-                _unitOfWork.Places.Find(
-                    y =>
-                        Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon &&
-                        Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)?.FirstOrDefault();
+                _unitOfWork.Places.FindAll()?.FirstOrDefault(place1 =>
+                        Math.Abs(place1.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon &&
+                        Math.Abs(place1.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon);
             long buildingId = place?.BuildingId ?? -1L;
-            var building = _unitOfWork.Buildings.Find(x => x.Id == buildingId)?.FirstOrDefault();
+            var building = _unitOfWork.Buildings.FindAll()?.FirstOrDefault(x => x.Id == buildingId);
 
             if (building != null)
             {
-                var faculties = _unitOfWork.Faculties.Find(x => x.BuildingId == buildingId)?.ToList();
+                var faculties = _unitOfWork.Faculties.FindAll().Where(x => x.BuildingId == buildingId)?.ToList();
                 if (faculties?.Any() ?? false)
                 {
                     faculties.ForEach(x =>
                     {
-                        var logo = _unitOfWork.Logos.Find(l => l.FacultyId == x.Id)?.FirstOrDefault();
+                        var logo = _unitOfWork.Logos.FindAll().FirstOrDefault(l => l.FacultyId == x.Id);
                         x.Logo = logo;
                     });
                     building.Faculties = faculties?.ToList();
                 }
                 return Result<Building>.Wrap(building);
-
             }
             return Result<Building>.Error();             
         }
