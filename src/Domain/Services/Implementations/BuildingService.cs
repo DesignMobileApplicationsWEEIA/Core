@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Domain.Model.Database;
@@ -36,6 +37,11 @@ namespace Domain.Services.Implementations
                     Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
                         x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
             }, TimeSpan.FromDays(1));
+        }
+
+        public Result<IEnumerable<Building>> GetAll()
+        {
+            return Result<Building>.Wrap(_unitOfWork.Buildings.FindAll());
         }
     }
 }
