@@ -1,8 +1,6 @@
-﻿using Domain.Cache.Implementations;
-using Domain.Cache.Interfaces;
+﻿using Domain.Cache.Interfaces;
 using Domain.Database.Interfaces;
 using Domain.Repositories.Interfaces;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Domain.Repositories.Implementations
 {
@@ -11,12 +9,11 @@ namespace Domain.Repositories.Implementations
         private readonly IDbContext _dbContext;
         private bool _shouldBeDisposed = true;
 
-        public UnitOfWork(IDbContext dbContext, IMemoryCache memoryCache)
+        public UnitOfWork(IDbContext dbContext)
         {
             _dbContext = dbContext;
             Places = new PlaceRepository(_dbContext);
             Buildings = new BuildingRepository(_dbContext);
-            Cache = new InMemoryCacheService(memoryCache);
             Achievements = new AchievementRepository(_dbContext);
             Faculties = new FacultyRepository(_dbContext);
         }
@@ -24,8 +21,6 @@ namespace Domain.Repositories.Implementations
         public IPlaceRepository Places { get; }
 
         public IBuildingRepository Buildings { get; }
-
-        public ICacheService Cache { get; }
 
         public IAchievementRepository Achievements { get; }
 
@@ -40,7 +35,6 @@ namespace Domain.Repositories.Implementations
             {
                 _shouldBeDisposed = false;
                 _dbContext?.Dispose();
-                Cache?.Dispose();
             }
         }
 
