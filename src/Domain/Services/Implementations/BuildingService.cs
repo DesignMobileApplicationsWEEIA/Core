@@ -36,11 +36,25 @@ namespace Domain.Services.Implementations
                     y =>
                         Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon &&
                         Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)?.FirstOrDefault();
-            var
+            long buildingId = place?.BuildingId ?? -1L;
+            var building = _unitOfWork.Buildings.Find(x => x.Id == buildingId)?.FirstOrDefault();
 
-            return
-                Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
-                    x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
+            if (building != null)
+            {
+                var faculties = _unitOfWork.Faculties.Find(x => x.BuildingId == buildingId)?.ToList();
+                if (faculties?.Any() ?? false)
+                {
+                    faculties.ForEach(x =>
+                    {
+                        var logo = _unitOfWork.Logos.Find(l => l.FacultyId == x.Id)?.FirstOrDefault();
+                        x.Logo = logo;
+                    });
+                    building.Faculties = faculties?.ToList();
+                }
+                return Result<Building>.Wrap(building);
+
+            }
+            return Result<Building>.Error();             
         }
 
         public Result<IEnumerable<Building>> GetAll()
