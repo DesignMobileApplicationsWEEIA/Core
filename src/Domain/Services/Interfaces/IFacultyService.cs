@@ -4,8 +4,8 @@ using Domain.Model.Database;
 
 namespace Domain.Services.Interfaces
 {
-    public interface ILogoService : IService
+    public interface IFacultyService : IService
     {
-        Result<IEnumerable<Logo>> GetAll();
+        Result<IEnumerable<Faculty>> GetAll();
     }
 }

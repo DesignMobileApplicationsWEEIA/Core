@@ -40,7 +40,7 @@ namespace Domain.Services.Implementations
 
             if (building != null)
             {
-                var faculties = _unitOfWork.Faculties.FindAll().Where(x => x.BuildingId == buildingId)?.ToList();
+                var faculties = _unitOfWork.Faculties.FindAll()?.Where(x => x.BuildingId == buildingId).ToList();
                 if (faculties?.Any() ?? false)
                 {
                     faculties.ForEach(x =>
