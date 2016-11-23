@@ -16,6 +16,7 @@ namespace Domain.Repositories.Implementations
             Buildings = new BuildingRepository(_dbContext);
             Achievements = new AchievementRepository(_dbContext);
             Faculties = new FacultyRepository(_dbContext);
+            Logos = new LogoRepository(_dbContext);
         }
 
         public IPlaceRepository Places { get; }
@@ -39,5 +40,6 @@ namespace Domain.Repositories.Implementations
         }
 
         public IFacultyRepository Faculties { get; }
+        public ILogoRepository Logos { get; }
     }
 }

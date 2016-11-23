@@ -8,6 +8,7 @@ namespace Domain.Repositories.Interfaces
         IBuildingRepository Buildings { get; }
         IAchievementRepository Achievements { get; }
         IFacultyRepository Faculties { get; }
+        ILogoRepository Logos { get; }
         int Complete();
     }
 }

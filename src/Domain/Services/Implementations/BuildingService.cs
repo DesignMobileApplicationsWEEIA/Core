@@ -6,6 +6,8 @@ using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 using Domain.Model.Api;
+using System.Linq;
+
 namespace Domain.Services.Implementations
 {
     public class BuildingService : IBuildingService
@@ -29,9 +31,30 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
-            return
-                Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
-                    x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
+            var place =
+                _unitOfWork.Places.Find(
+                    y =>
+                        Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon &&
+                        Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)?.FirstOrDefault();
+            long buildingId = place?.BuildingId ?? -1L;
+            var building = _unitOfWork.Buildings.Find(x => x.Id == buildingId)?.FirstOrDefault();
+
+            if (building != null)
+            {
+                var faculties = _unitOfWork.Faculties.Find(x => x.BuildingId == buildingId)?.ToList();
+                if (faculties?.Any() ?? false)
+                {
+                    faculties.ForEach(x =>
+                    {
+                        var logo = _unitOfWork.Logos.Find(l => l.FacultyId == x.Id)?.FirstOrDefault();
+                        x.Logo = logo;
+                    });
+                    building.Faculties = faculties?.ToList();
+                }
+                return Result<Building>.Wrap(building);
+
+            }
+            return Result<Building>.Error();             
         }
 
         public Result<IEnumerable<Building>> GetAll()
