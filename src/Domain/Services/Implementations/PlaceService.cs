@@ -24,25 +24,22 @@ namespace Domain.Services.Implementations
             _unitOfWork?.Dispose();
         }
 
-        public Result<bool> Add(ApiPlace place, string userId)
+        public Result<bool> Add(ApiPlace place)
         {
-            if (!string.IsNullOrEmpty(userId))
+            var res = _unitOfWork.Buildings.Add(ApiBuilding.ToBuilding(place.Building));
+            if (res.HasValue)
             {
-                var res = _unitOfWork.Buildings.Add(ApiBuilding.ToBuilding(place.Building));
-                if (res.HasValue)
-                {
-                    var newPlace = ApiPlace.ToPlace(place);
-                    newPlace.BuildingId = res.Value.Id;
-                    _unitOfWork.Places.Add(ApiPlace.ToPlace(place));
-                    return Result<bool>.WrapValue(_unitOfWork.Complete() == 1);
-                }
+                var newPlace = ApiPlace.ToPlace(place);
+                newPlace.BuildingId = res.Value.Id;
+                _unitOfWork.Places.Add(ApiPlace.ToPlace(place));
+                return Result<bool>.WrapValue(_unitOfWork.Complete() == 1);
             }
             return Result<bool>.Error();
         }
 
-        public Result<IEnumerable<Place>> GetAll(ApiPlace place, string userId)
+        public Result<IEnumerable<Place>> GetAll()
         {
-           return  Result<IEnumerable<Place>>.Wrap(_unitOfWork.Places.FindAll());
+            return Result<IEnumerable<Place>>.Wrap(_unitOfWork.Places.FindAll());
         }
     }
 }
