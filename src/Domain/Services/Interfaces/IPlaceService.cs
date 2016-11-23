@@ -6,7 +6,7 @@ namespace Domain.Services.Interfaces
 {
     public interface IPlaceService : IService
     {
-        Result<bool> Add(ApiPlace place, string userId);
-        Result<IEnumerable<Place>> GetAll(ApiPlace place, string userId);
+        Result<bool> Add(ApiPlace place);
+        Result<IEnumerable<Place>> GetAll();
     }
 }
