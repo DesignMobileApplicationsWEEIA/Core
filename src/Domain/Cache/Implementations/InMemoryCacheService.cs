@@ -42,3 +42,4 @@ namespace Domain.Cache.Implementations
             _memoryCache.Remove(key);
         }
     }
+}
