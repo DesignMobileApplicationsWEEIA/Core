@@ -40,12 +40,13 @@ namespace Domain.Services.Implementations
 
             if (building != null)
             {
+                building.Places = new List<Place>() { place };
                 var faculties = _unitOfWork.Faculties.FindAll()?.Where(x => x.BuildingId == buildingId).ToList();
                 if (faculties?.Any() ?? false)
                 {
                     faculties.ForEach(x =>
                     {
-                        var logo = _unitOfWork.Logos.FindAll().FirstOrDefault(l => l.FacultyId == x.Id);
+                        var logo = _unitOfWork.Logos.FindAll().FirstOrDefault(l => l.Id == x.LogoId);
                         x.Logo = logo;
                     });
                     building.Faculties = faculties?.ToList();
