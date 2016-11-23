@@ -6,6 +6,8 @@ using Domain.Model.Database;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 using Domain.Model.Api;
+using System.Linq;
+
 namespace Domain.Services.Implementations
 {
     public class BuildingService : IBuildingService
@@ -29,6 +31,13 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
+            var place =
+                _unitOfWork.Places.Find(
+                    y =>
+                        Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon &&
+                        Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)?.FirstOrDefault();
+            var
+
             return
                 Result<Building>.Wrap(_unitOfWork.Buildings.FindAllInfo(
                     x => x.Places.Any(y => Math.Abs(y.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon && Math.Abs(y.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon)));
