@@ -1,6 +1,6 @@
 ﻿namespace Domain.Model.Database
 {
-    public class UserAchievement
+    public class UserAchievement : IEntity
     {
         public long Id { get; set; }
 
