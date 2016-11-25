@@ -35,7 +35,9 @@ namespace Domain.Services.Implementations
             {
                 return Result<bool>.Error();
             }
-            var result = _unitOfWork.UserAchievements.Add()
+            var result = _unitOfWork.UserAchievements.Add(ApiUserAchievement.ToUserAchievement(apiUserAchievement));
+
+            return Result<bool>.Wrap(result.HasValue, x => x);
         }
     }
 }
