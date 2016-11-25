@@ -17,6 +17,8 @@ namespace Domain.Database.Interfaces
         DbSet<Achievement> Achievements { get; set; }
 
         DbSet<Logo> Logos { get; set; }
+
+        DbSet<UserAchievement> UserAchievements { get; set; }
           
         int SaveChanges();
 
