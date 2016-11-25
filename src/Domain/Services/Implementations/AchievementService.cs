@@ -27,6 +27,5 @@ namespace Domain.Services.Implementations
         {
             return Result<IEnumerable<Achievement>>.Wrap(_unitOfWork.Achievements.FindAll());
         }
-
     }
 }

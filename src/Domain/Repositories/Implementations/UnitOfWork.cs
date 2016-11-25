@@ -1,5 +1,4 @@
-﻿using Domain.Cache.Interfaces;
-using Domain.Database.Interfaces;
+﻿using Domain.Database.Interfaces;
 using Domain.Repositories.Interfaces;
 
 namespace Domain.Repositories.Implementations
@@ -17,6 +16,7 @@ namespace Domain.Repositories.Implementations
             Achievements = new AchievementRepository(_dbContext);
             Faculties = new FacultyRepository(_dbContext);
             Logos = new LogoRepository(_dbContext);
+            UserAchievements = new UserAchievementRepository(_dbContext);
         }
 
         public IPlaceRepository Places { get; }
@@ -41,5 +41,6 @@ namespace Domain.Repositories.Implementations
 
         public IFacultyRepository Faculties { get; }
         public ILogoRepository Logos { get; }
+        public IUserAchievementRepository UserAchievements { get; }
     }
 }
