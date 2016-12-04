@@ -29,17 +29,19 @@ namespace Domain.Services.Implementations
             return Result<IEnumerable<UserAchievement>>.Wrap(_unitOfWork.UserAchievements.FindAll());
         }
 
-        public Result<Chellenges> GetUserChellenges(string macAddress)
+        public Result<List<AchievementResult>> GetUserAchievements(string macAddress)
         {
-            var ids = _unitOfWork.UserAchievements.FindAll().Where(x => x.MacAddress == macAddress).Select(x => x.Id).ToList();
+            var ids = _unitOfWork.UserAchievements.FindAll().Where(x => x.MacAddress == macAddress).Select(x => x.AchievementId).ToList();
             var achivements = _unitOfWork.Achievements.FindAll().ToList();
-            var completedAchievement = achivements.Where(x => ids.Any(y => y == x.Id)).ToList();
-            var todo = achivements.Where(x => ids.All(y => y != x.Id)).ToList();
-            return Result<Chellenges>.Wrap(new Chellenges()
+            var result = achivements.Select(x => new AchievementResult()
             {
-                Completed = completedAchievement,
-                ToDo = todo
-            });
+                Completed = ids.Any(y => y == x.Id),
+                Id = x.Id,
+                Latitude = x.Latitude,
+                Longitude = x.Longitude,
+                Name = x.Name
+            }).ToList();
+            return Result<IEnumerable<AchievementResult>>.Wrap(result);
         }
 
         public Result<bool> Add(ApiUserAchievement apiUserAchievement)
