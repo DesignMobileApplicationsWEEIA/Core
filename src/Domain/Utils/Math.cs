@@ -1,4 +1,5 @@
 ﻿using Domain.Model.Math;
+using Domain.Model.Math.UnitOfMeasures;
 
 namespace Domain.Utils
 {
@@ -31,6 +32,11 @@ namespace Domain.Utils
             return
                 System.Math.Sqrt((System.Math.Pow((point2.X - point1.X), 2)) +
                                  (System.Math.Pow((point2.Y - point1.Y), 2)));
+        }
+
+        public static Meter LenghtOfLineInMap(Point point1, Point point2)
+        {
+            return new Meter(LenghtOfLine(point1, point2) * 73000);
         }
     }
 }
