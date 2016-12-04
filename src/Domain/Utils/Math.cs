@@ -5,6 +5,9 @@ namespace Domain.Utils
 {
     public static class Math
     {
+        public const int MaxDistance = 10;
+        public const int MeterPerDagree = 111000;
+
         public static double Sign(Point p1, Point p2, Point p3)
         {
             return (p1.X - p3.X) * (p2.Y - p3.Y) - (p2.X - p3.X) * (p1.Y - p3.Y);
@@ -26,7 +29,7 @@ namespace Domain.Utils
             var azimuthTan = System.Math.Tan(azimuth);
             var lineFunction = LineFunction.GetFromTwoPoints(p1, p2);
             var distanceBetween = LenghtOfLineInMap(p1, p2);
-            return (System.Math.Abs(azimuthTan - lineFunction.A) < 0.1);
+            return (System.Math.Abs(azimuthTan - lineFunction.A) < 0.1) && distanceBetween.Value < MaxDistance;
         }
 
         public static double LenghtOfLine(Point point1, Point point2)
@@ -38,7 +41,7 @@ namespace Domain.Utils
 
         public static Meter LenghtOfLineInMap(Point point1, Point point2)
         {
-            return new Meter(LenghtOfLine(point1, point2) * 73000);
+            return new Meter(LenghtOfLine(point1, point2) * MeterPerDagree);
         }
     }
 }

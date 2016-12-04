@@ -15,5 +15,15 @@ namespace Domain.Tests.Utils
             var result = Math.LenghtOfLine(point1, ponit2);
             result.Should().BeGreaterOrEqualTo(5);
         }
+
+        [Fact]
+        public void Test_Compute_Distance_In_Map()
+        {
+            var point1 = new Point(51.747162, 19.455941);
+            var ponit2 = new Point(51.747207, 19.455923);
+            var result = Math.LenghtOfLineInMap(point1, ponit2);
+            result.Value.Should().BeGreaterOrEqualTo(5);
+            result.Value.Should().BeLessOrEqualTo(6);
+        }
     }
 }
