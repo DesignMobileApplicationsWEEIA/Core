@@ -8,5 +8,7 @@ namespace Domain.Services.Interfaces
     {
         Result<IEnumerable<UserAchievement>> GetAll();
         Result<bool> Add(ApiUserAchievement apiUserAchievement);
+        Result<List<AchievementResult>> GetUserAchievements(string macAddress);
+        Result<bool> StoreAchievement(PhoneData phoneData);
     }
 }

@@ -7,6 +7,8 @@ using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 using Domain.Model.Api;
 using System.Linq;
+using Domain.Model.Math;
+using Math = Domain.Utils.Math;
 
 namespace Domain.Services.Implementations
 {
@@ -31,10 +33,13 @@ namespace Domain.Services.Implementations
 
         public Result<Building> SearchBuildingWithPhoneData(PhoneData phoneData)
         {
+            var userPoint = new Point(phoneData.PhoneLocation.Latitude, phoneData.PhoneLocation.Longitude);
             var place =
                 _unitOfWork.Places.FindAll()?.FirstOrDefault(place1 =>
-                        Math.Abs(place1.Latitude - phoneData.PhoneLocation.Latitude) < double.Epsilon &&
-                        Math.Abs(place1.Longitude - phoneData.PhoneLocation.Longitude) < double.Epsilon);
+                {
+                    var tmp = new Point(place1.Latitude, place1.Longitude);
+                    return (tmp == userPoint) || Math.IsInPointOfView(userPoint, tmp, phoneData.Direction);
+                });
             long buildingId = place?.BuildingId ?? -1L;
             var building = _unitOfWork.Buildings.FindAll()?.FirstOrDefault(x => x.Id == buildingId);
 
