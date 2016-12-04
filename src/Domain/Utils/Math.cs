@@ -20,5 +20,9 @@ namespace Domain.Utils
             return c1 && c2 && c3;
         }
 
+        public static bool IsInLine(Point p1, Point p2, double azimuth)
+        {
+
+        }
     }
 }
