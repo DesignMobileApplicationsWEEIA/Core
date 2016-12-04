@@ -22,7 +22,7 @@ namespace Domain.Utils
 
         public static bool IsInLine(Point p1, Point p2, double azimuth)
         {
-
+            return false;
         }
     }
 }
