@@ -20,9 +20,17 @@ namespace Domain.Utils
             return c1 && c2 && c3;
         }
 
-        public static bool IsInLine(Point p1, Point p2, double azimuth)
+        public static bool IsInPointOfView(Point p1, Point p2, double azimuth)
         {
+            var azimuthTan = System.Math.Tan(azimuth);
             return false;
+        }
+
+        public static double LenghtOfLine(Point point1, Point point2)
+        {
+            return
+                System.Math.Sqrt((System.Math.Pow((point2.X - point1.X), 2)) +
+                                 (System.Math.Pow((point2.Y - point1.Y), 2)));
         }
     }
 }
