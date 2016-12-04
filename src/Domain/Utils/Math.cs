@@ -24,7 +24,9 @@ namespace Domain.Utils
         public static bool IsInPointOfView(Point p1, Point p2, double azimuth)
         {
             var azimuthTan = System.Math.Tan(azimuth);
-            return false;
+            var lineFunction = LineFunction.GetFromTwoPoints(p1, p2);
+            var distanceBetween = LenghtOfLineInMap(p1, p2);
+            return (System.Math.Abs(azimuthTan - lineFunction.A) < 0.1);
         }
 
         public static double LenghtOfLine(Point point1, Point point2)
