@@ -25,5 +25,12 @@ namespace Domain.Tests.Utils
             result.Value.Should().BeGreaterOrEqualTo(5);
             result.Value.Should().BeLessOrEqualTo(6);
         }
+
+        [Fact]
+        public void Test_Dagrees_To_Radians_Conversion()
+        {
+            var res = Math.DagreeToReadians(30);
+            res.Should().BeLessOrEqualTo(0.5236);
+        }
     }
 }
