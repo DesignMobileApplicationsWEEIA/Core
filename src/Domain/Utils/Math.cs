@@ -5,7 +5,7 @@ namespace Domain.Utils
 {
     public static class Math
     {
-        public const int MaxDistance = 10;
+        public const int MaxDistance = 40;
         public const int MeterPerDagree = 111000;
 
         public static bool IsInPointOfView(Point p1, Point p2, double azimuth)
