@@ -5,15 +5,21 @@ namespace Domain.Utils
 {
     public static class Math
     {
-        public const int MaxDistance = 40;
+        public const int MaxDistance = 160;
         public const int MeterPerDagree = 111000;
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <param name="azimuth">Dagree</param>
+        /// <returns></returns>
         public static bool IsInPointOfView(Point p1, Point p2, double azimuth)
         {
-            var azimuthTan = System.Math.Tan(DagreeToReadians(azimuth));
-            var lineFunction = LineFunction.GetFromTwoPoints(p1, p2);
             var distanceBetween = LenghtOfLineInMap(p1, p2);
-            return (System.Math.Abs(azimuthTan - lineFunction.A) < 0.1) && distanceBetween.Value < MaxDistance;
+            var newAzimuth = ToBearing(System.Math.Atan2(p2.Y - p1.Y, p2.X - p1.X));
+            return System.Math.Abs(azimuth - newAzimuth) < 20 && distanceBetween.Value < MaxDistance;
         }
 
         public static double LenghtOfLine(Point point1, Point point2)
@@ -32,5 +38,17 @@ namespace Domain.Utils
         {
             return dagree * (System.Math.PI / 180d);
         }
+
+        public static double RadianToDegree(double angle)
+        {
+            return angle * (180.0 / System.Math.PI);
+        }
+
+        public static double ToBearing(double radians)
+        {
+            return (RadianToDegree(radians) + 360) % 360;
+        }
+
+
     }
 }
