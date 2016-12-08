@@ -1,5 +1,4 @@
 ﻿using Domain.Model.Math;
-using Domain.Model.Math.UnitOfMeasures;
 
 namespace Domain.Utils
 {
@@ -19,7 +18,7 @@ namespace Domain.Utils
         {
             var distanceBetween = LenghtOfLineInMap(p1, p2);
             var newAzimuth = ToBearing(System.Math.Atan2(p2.Y - p1.Y, p2.X - p1.X));
-            return System.Math.Abs(azimuth - newAzimuth) < 20 && distanceBetween.Value < MaxDistance;
+            return System.Math.Abs(azimuth - newAzimuth) < 20 && distanceBetween < MaxDistance;
         }
 
         public static double LenghtOfLine(Point point1, Point point2)
@@ -29,9 +28,9 @@ namespace Domain.Utils
                                  (System.Math.Pow((point2.Y - point1.Y), 2)));
         }
 
-        public static Meter LenghtOfLineInMap(Point point1, Point point2)
+        public static double LenghtOfLineInMap(Point point1, Point point2)
         {
-            return new Meter(LenghtOfLine(point1, point2) * MeterPerDagree);
+            return LenghtOfLine(point1, point2) * MeterPerDagree;
         }
 
         public static double DagreeToReadians(double dagree)
