@@ -77,5 +77,11 @@ namespace Domain.Services.Implementations
 
             return Result<bool>.Wrap(result.HasValue, x => x);
         }
+
+        public Result<bool> RemoveByMacAddress(string macAddress)
+        {
+            var getAchievements = _unitOfWork.UserAchievements.FindAll().Where(x => x.MacAddress == macAddress);
+            return _unitOfWork.UserAchievements.RemoveRange(getAchievements) == OperationStatus.Succeed ? Result<bool>.WrapValue(true) : Result<bool>.Error();
+        }
     }
 }
