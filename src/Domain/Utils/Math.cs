@@ -18,7 +18,7 @@ namespace Domain.Utils
         {
             var distanceBetween = LenghtOfLineInMap(p1, p2);
             var newAzimuth = ToBearing(System.Math.Atan2(p2.Y - p1.Y, p2.X - p1.X));
-            return System.Math.Abs(azimuth - newAzimuth) < 20;
+            return System.Math.Abs(azimuth - newAzimuth) < 20 && distanceBetween < MaxDistance;
         }
 
         public static double LenghtOfLine(Point point1, Point point2)

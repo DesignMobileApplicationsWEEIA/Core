@@ -69,6 +69,14 @@ namespace Domain.Tests.Utils
         }
 
         [Fact]
+        public void Test_IsInPointViewMethod_Direction_East_South2()
+        {
+            var achievementPoint = new Point(51.746611, 19.455870);
+            var point = new Point(51.746798, 19.455300);
+            Assert.True(Math.IsInPointOfView(point, achievementPoint, 108));
+        }
+
+        [Fact]
         public void Test_IsInPointViewMethod_Direction_West_South()
         {
             var achievementPoint = new Point(51.746496,  19.454816);
