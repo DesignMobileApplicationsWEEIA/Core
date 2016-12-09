@@ -61,7 +61,7 @@ namespace Domain.Services.Implementations
                     AchievementId = achievement.Id,
                     MacAddress = phoneData.MacAddress
                 });
-
+                _unitOfWork.Complete();
                 return Result<bool>.WrapValue(result.HasValue);
             }
             return Result<bool>.Error("No Achievement");
@@ -74,14 +74,16 @@ namespace Domain.Services.Implementations
                 return Result<bool>.Error();
             }
             var result = _unitOfWork.UserAchievements.Add(ApiUserAchievement.ToUserAchievement(apiUserAchievement));
-
+            _unitOfWork.Complete();
             return Result<bool>.Wrap(result.HasValue, x => x);
         }
 
         public Result<bool> RemoveByMacAddress(string macAddress)
         {
             var getAchievements = _unitOfWork.UserAchievements.FindAll().Where(x => x.MacAddress == macAddress);
-            return _unitOfWork.UserAchievements.RemoveRange(getAchievements) == OperationStatus.Succeed ? Result<bool>.WrapValue(true) : Result<bool>.Error();
+            var removeResult = _unitOfWork.UserAchievements.RemoveRange(getAchievements);
+            _unitOfWork.Complete();
+            return removeResult == OperationStatus.Succeed ? Result<bool>.WrapValue(true) : Result<bool>.Error();
         }
     }
 }
