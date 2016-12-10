@@ -46,25 +46,29 @@ namespace Domain.Services.Implementations
             return Result<IEnumerable<AchievementResult>>.Wrap(result);
         }
 
-        public Result<bool> StoreAchievement(PhoneData phoneData)
+        public Result<Achievement> StoreAchievement(PhoneData phoneData)
         {
             var achievements = _unitOfWork.Achievements.FindAll().ToList();
             var userPoint = new Point(phoneData.PhoneLocation.Latitude, phoneData.PhoneLocation.Longitude);
             var achievement =
                 achievements.FirstOrDefault(
                     x => Math.IsInPointOfView(userPoint, new Point(x.Latitude, x.Longitude), phoneData.Direction));
-
             if (achievement != null)
             {
-                var result = _unitOfWork.UserAchievements.Add(new UserAchievement()
+                var isNotUnique = _unitOfWork.UserAchievements.FindAll().Any(x => x.AchievementId == achievement.Id && x.MacAddress == phoneData.MacAddress);
+                if (!isNotUnique)
                 {
-                    AchievementId = achievement.Id,
-                    MacAddress = phoneData.MacAddress
-                });
-                _unitOfWork.Complete();
-                return Result<bool>.WrapValue(result.HasValue);
+                    var result = _unitOfWork.UserAchievements.Add(new UserAchievement()
+                    {
+                        AchievementId = achievement.Id,
+                        MacAddress = phoneData.MacAddress
+                    });
+                    _unitOfWork.Complete();
+                    return Result<Achievement>.Wrap(achievement);
+                }
+                return Result<Achievement>.Error("Achievement Exist");
             }
-            return Result<bool>.Error("No Achievement");
+            return Result<Achievement>.Error("No Achievement");
         }
 
         public Result<bool> Add(ApiUserAchievement apiUserAchievement)
